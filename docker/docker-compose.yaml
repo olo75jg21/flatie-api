@@ -1,0 +1,19 @@
+version: '3.6'
+services:
+  db:
+    image: "postgres:15.3"
+    restart: always
+    environment:
+      POSTGRES_USER: Dev
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: FlatieDB
+    ports:
+      - 5432:5432
+    volumes:
+      - data_postgres:/var/lib/postgresql/data
+
+volumes:
+  data_postgres:
+    driver: local
+  data_pgadmin:
+    driver: local

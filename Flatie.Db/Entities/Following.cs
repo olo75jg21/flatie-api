@@ -1,4 +1,4 @@
-namespace Flatie.Dto
+namespace Flatie.Db.Entities
 {
     public class Following
     {
