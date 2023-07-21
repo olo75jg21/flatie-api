@@ -3,6 +3,7 @@ using System;
 using Flatie.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flatie.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230721183957_Initial")]
+    partial class Initial
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,8 +260,6 @@ namespace Flatie.Db.Migrations
 
                     b.HasIndex("HomeSpaceId");
 
-                    b.HasIndex("PucharsedByUserId");
-
                     b.HasIndex("RequestedByUserId");
 
                     b.ToTable("ShoppingList");
@@ -431,18 +432,11 @@ namespace Flatie.Db.Migrations
                         .WithMany("ShoppingLists")
                         .HasForeignKey("HomeSpaceId");
 
-                    b.HasOne("Flatie.Db.Entities.User", "PuchasedByUser")
-                        .WithMany("ShoppingLists")
-                        .HasForeignKey("PucharsedByUserId")
-                        .OnDelete(DeleteBehavior.Restrict);
-
                     b.HasOne("Flatie.Db.Entities.User", "RequestedByUser")
-                        .WithMany()
+                        .WithMany("ShoppingLists")
                         .HasForeignKey("RequestedByUserId");
 
                     b.Navigation("HomeSpace");
-
-                    b.Navigation("PuchasedByUser");
 
                     b.Navigation("RequestedByUser");
                 });
