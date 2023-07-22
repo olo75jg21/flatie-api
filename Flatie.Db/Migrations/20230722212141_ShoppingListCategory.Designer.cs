@@ -3,6 +3,7 @@ using System;
 using Flatie.Db;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flatie.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230722212141_ShoppingListCategory")]
+    partial class ShoppingListCategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,8 +236,7 @@ namespace Flatie.Db.Migrations
                     b.Property<int>("Amount")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("CategoryId")
-                        .IsRequired()
+                    b.Property<int>("CategoryId")
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
@@ -304,7 +306,7 @@ namespace Flatie.Db.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int?>("UserAppRoleId")
+                    b.Property<int>("Role")
                         .HasColumnType("integer");
 
                     b.Property<string>("Username")
@@ -313,29 +315,7 @@ namespace Flatie.Db.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserAppRoleId");
-
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("Flatie.Db.Entities.UserAppRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("UserAppRole");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.UserTask", b =>
@@ -502,15 +482,6 @@ namespace Flatie.Db.Migrations
                     b.Navigation("RequestedByUser");
                 });
 
-            modelBuilder.Entity("Flatie.Db.Entities.User", b =>
-                {
-                    b.HasOne("Flatie.Db.Entities.UserAppRole", "UserAppRole")
-                        .WithMany("Users")
-                        .HasForeignKey("UserAppRoleId");
-
-                    b.Navigation("UserAppRole");
-                });
-
             modelBuilder.Entity("Flatie.Db.Entities.UserTask", b =>
                 {
                     b.HasOne("Flatie.Db.Entities.HomeSpace", "HomeSpace")
@@ -559,11 +530,6 @@ namespace Flatie.Db.Migrations
                     b.Navigation("ShoppingLists");
 
                     b.Navigation("UserTasks");
-                });
-
-            modelBuilder.Entity("Flatie.Db.Entities.UserAppRole", b =>
-                {
-                    b.Navigation("Users");
                 });
 #pragma warning restore 612, 618
         }

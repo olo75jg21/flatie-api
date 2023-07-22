@@ -8,8 +8,10 @@ namespace Flatie.Db.Entities
     {
         public string Username { get; set; } = null!;
         public string Password { get; set; } = null!;
-        // TODO change it to table
-        public UserRole Role { get; set; } = UserRole.Member;
+        public int? UserAppRoleId { get; set; }
+
+        [ForeignKey("UserAppRoleId")]
+        public UserAppRole? UserAppRole { get; set; }
 
         public ICollection<Notification> Notifications { get; set; } = new List<Notification>();
         public ICollection<ShoppingList> ShoppingLists { get; set; } = new List<ShoppingList>();
