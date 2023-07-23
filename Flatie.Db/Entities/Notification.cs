@@ -6,12 +6,14 @@ namespace Flatie.Db.Entities
     public class Notification : Base
     {
         public string Message { get; set; } = null!;
-        // TODO add a notificationType table
-        public string Type { get; set; } = null!;
         public bool read { get; set; } = false;
 
         public int? UserId { get; set; }
         public int? HomeSpaceId { get; set; }
+        public int? NotificationTypeId { get; set; }
+
+        [ForeignKey("NotificationTypeId")]
+        public NotificationType? Type { get; set; } = null!;
 
         [ForeignKey("UserId")]
         public User? User { get; set; }

@@ -8,7 +8,7 @@ namespace Flatie.Db.Entities
         public string ItemName { get; set; } = null!;
 
         public int Amount { get; set; }
-        public int? PurchasePrice { get; set; }
+        public int PurchasePrice { get; set; }
 
         public int? CategoryId { get; set; }
         public int? HomeSpaceId { get; set; }
@@ -16,7 +16,7 @@ namespace Flatie.Db.Entities
         public int? PucharsedByUserId { get; set; }
 
         [ForeignKey("CategoryId")]
-        public ShoppingListCategory Category { get; set; } = null!;
+        public ShoppingListCategory? Category { get; set; }
 
         [ForeignKey("HomeSpaceId")]
         public HomeSpace? HomeSpace { get; set; }

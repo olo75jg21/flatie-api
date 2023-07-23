@@ -163,9 +163,8 @@ namespace Flatie.Db.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Type")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("NotificationTypeId")
+                        .HasColumnType("integer");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
@@ -177,9 +176,31 @@ namespace Flatie.Db.Migrations
 
                     b.HasIndex("HomeSpaceId");
 
+                    b.HasIndex("NotificationTypeId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("Notification");
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.NotificationType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("TypeName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("NotificationType");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.QuietHour", b =>
@@ -196,12 +217,11 @@ namespace Flatie.Db.Migrations
                     b.Property<DateTime>("End")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("HomeSpaceId")
+                    b.Property<int?>("HomeSpaceId")
                         .HasColumnType("integer");
 
-                    b.Property<string>("Importance")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int?>("QuietHourImportanceId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Reason")
                         .IsRequired()
@@ -210,16 +230,37 @@ namespace Flatie.Db.Migrations
                     b.Property<DateTime>("Start")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("HomeSpaceId");
 
+                    b.HasIndex("QuietHourImportanceId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("QuietHour");
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.QuietHourImportance", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("Rank")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("QuietHourImportance");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.ShoppingList", b =>
@@ -234,7 +275,6 @@ namespace Flatie.Db.Migrations
                         .HasColumnType("integer");
 
                     b.Property<int?>("CategoryId")
-                        .IsRequired()
                         .HasColumnType("integer");
 
                     b.Property<DateTime>("CreatedAt")
@@ -250,7 +290,7 @@ namespace Flatie.Db.Migrations
                     b.Property<int?>("PucharsedByUserId")
                         .HasColumnType("integer");
 
-                    b.Property<int?>("PurchasePrice")
+                    b.Property<int>("PurchasePrice")
                         .HasColumnType("integer");
 
                     b.Property<int?>("RequestedByUserId")
@@ -444,11 +484,17 @@ namespace Flatie.Db.Migrations
                         .WithMany("Notifications")
                         .HasForeignKey("HomeSpaceId");
 
+                    b.HasOne("Flatie.Db.Entities.NotificationType", "Type")
+                        .WithMany("Notifications")
+                        .HasForeignKey("NotificationTypeId");
+
                     b.HasOne("Flatie.Db.Entities.User", "User")
                         .WithMany("Notifications")
                         .HasForeignKey("UserId");
 
                     b.Navigation("HomeSpace");
+
+                    b.Navigation("Type");
 
                     b.Navigation("User");
                 });
@@ -457,17 +503,19 @@ namespace Flatie.Db.Migrations
                 {
                     b.HasOne("Flatie.Db.Entities.HomeSpace", "HomeSpace")
                         .WithMany("QuietHours")
-                        .HasForeignKey("HomeSpaceId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HomeSpaceId");
+
+                    b.HasOne("Flatie.Db.Entities.QuietHourImportance", "Importance")
+                        .WithMany("QuietHours")
+                        .HasForeignKey("QuietHourImportanceId");
 
                     b.HasOne("Flatie.Db.Entities.User", "User")
                         .WithMany("QuietHours")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("HomeSpace");
+
+                    b.Navigation("Importance");
 
                     b.Navigation("User");
                 });
@@ -476,9 +524,7 @@ namespace Flatie.Db.Migrations
                 {
                     b.HasOne("Flatie.Db.Entities.ShoppingListCategory", "Category")
                         .WithMany("ShoppingLists")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("Flatie.Db.Entities.HomeSpace", "HomeSpace")
                         .WithMany("ShoppingLists")
@@ -539,6 +585,16 @@ namespace Flatie.Db.Migrations
                     b.Navigation("ShoppingLists");
 
                     b.Navigation("UserTasks");
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.NotificationType", b =>
+                {
+                    b.Navigation("Notifications");
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.QuietHourImportance", b =>
+                {
+                    b.Navigation("QuietHours");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.ShoppingListCategory", b =>

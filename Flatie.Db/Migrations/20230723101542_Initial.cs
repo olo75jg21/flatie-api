@@ -27,6 +27,62 @@ namespace Flatie.Db.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "NotificationType",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    TypeName = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_NotificationType", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "QuietHourImportance",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Rank = table.Column<int>(type: "integer", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_QuietHourImportance", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ShoppingListCategory",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ShoppingListCategory", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "UserAppRole",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserAppRole", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "User",
                 columns: table => new
                 {
@@ -34,12 +90,17 @@ namespace Flatie.Db.Migrations
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Username = table.Column<string>(type: "text", nullable: false),
                     Password = table.Column<string>(type: "text", nullable: false),
-                    Role = table.Column<int>(type: "integer", nullable: false),
+                    UserAppRoleId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_User", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_User_UserAppRole_UserAppRoleId",
+                        column: x => x.UserAppRoleId,
+                        principalTable: "UserAppRole",
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -137,10 +198,10 @@ namespace Flatie.Db.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Message = table.Column<string>(type: "text", nullable: false),
-                    Type = table.Column<string>(type: "text", nullable: false),
                     read = table.Column<bool>(type: "boolean", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: true),
                     HomeSpaceId = table.Column<int>(type: "integer", nullable: true),
+                    NotificationTypeId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -150,6 +211,11 @@ namespace Flatie.Db.Migrations
                         name: "FK_Notification_HomeSpace_HomeSpaceId",
                         column: x => x.HomeSpaceId,
                         principalTable: "HomeSpace",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_Notification_NotificationType_NotificationTypeId",
+                        column: x => x.NotificationTypeId,
+                        principalTable: "NotificationType",
                         principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Notification_User_UserId",
@@ -165,11 +231,11 @@ namespace Flatie.Db.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Reason = table.Column<string>(type: "text", nullable: false),
-                    Importance = table.Column<string>(type: "text", nullable: false),
                     Start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     End = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    HomeSpaceId = table.Column<int>(type: "integer", nullable: false),
+                    UserId = table.Column<int>(type: "integer", nullable: true),
+                    HomeSpaceId = table.Column<int>(type: "integer", nullable: true),
+                    QuietHourImportanceId = table.Column<int>(type: "integer", nullable: true),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -179,14 +245,17 @@ namespace Flatie.Db.Migrations
                         name: "FK_QuietHour_HomeSpace_HomeSpaceId",
                         column: x => x.HomeSpaceId,
                         principalTable: "HomeSpace",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_QuietHour_QuietHourImportance_QuietHourImportanceId",
+                        column: x => x.QuietHourImportanceId,
+                        principalTable: "QuietHourImportance",
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_QuietHour_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -196,8 +265,9 @@ namespace Flatie.Db.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     ItemName = table.Column<string>(type: "text", nullable: false),
-                    Category = table.Column<string>(type: "text", nullable: false),
                     Amount = table.Column<int>(type: "integer", nullable: false),
+                    PurchasePrice = table.Column<int>(type: "integer", nullable: false),
+                    CategoryId = table.Column<int>(type: "integer", nullable: true),
                     HomeSpaceId = table.Column<int>(type: "integer", nullable: true),
                     RequestedByUserId = table.Column<int>(type: "integer", nullable: true),
                     PucharsedByUserId = table.Column<int>(type: "integer", nullable: true),
@@ -211,6 +281,17 @@ namespace Flatie.Db.Migrations
                         column: x => x.HomeSpaceId,
                         principalTable: "HomeSpace",
                         principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ShoppingList_ShoppingListCategory_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "ShoppingListCategory",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_ShoppingList_User_PucharsedByUserId",
+                        column: x => x.PucharsedByUserId,
+                        principalTable: "User",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ShoppingList_User_RequestedByUserId",
                         column: x => x.RequestedByUserId,
@@ -284,6 +365,11 @@ namespace Flatie.Db.Migrations
                 column: "HomeSpaceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Notification_NotificationTypeId",
+                table: "Notification",
+                column: "NotificationTypeId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Notification_UserId",
                 table: "Notification",
                 column: "UserId");
@@ -294,9 +380,19 @@ namespace Flatie.Db.Migrations
                 column: "HomeSpaceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_QuietHour_QuietHourImportanceId",
+                table: "QuietHour",
+                column: "QuietHourImportanceId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_QuietHour_UserId",
                 table: "QuietHour",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ShoppingList_CategoryId",
+                table: "ShoppingList",
+                column: "CategoryId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ShoppingList_HomeSpaceId",
@@ -304,9 +400,19 @@ namespace Flatie.Db.Migrations
                 column: "HomeSpaceId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ShoppingList_PucharsedByUserId",
+                table: "ShoppingList",
+                column: "PucharsedByUserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ShoppingList_RequestedByUserId",
                 table: "ShoppingList",
                 column: "RequestedByUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_User_UserAppRoleId",
+                table: "User",
+                column: "UserAppRoleId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserTask_HomeSpaceId",
@@ -344,10 +450,22 @@ namespace Flatie.Db.Migrations
                 name: "UserTask");
 
             migrationBuilder.DropTable(
+                name: "NotificationType");
+
+            migrationBuilder.DropTable(
+                name: "QuietHourImportance");
+
+            migrationBuilder.DropTable(
+                name: "ShoppingListCategory");
+
+            migrationBuilder.DropTable(
                 name: "HomeSpace");
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "UserAppRole");
         }
     }
 }
