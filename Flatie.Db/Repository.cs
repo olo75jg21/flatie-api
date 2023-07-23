@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Flatie.Db
 {
-    public class Repository<TEntity> where TEntity : class
+    public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly AppDbContext _dbContext;
+        protected readonly AppDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
 
         public Repository(AppDbContext dbContext)
