@@ -29,6 +29,9 @@ namespace Flatie.Db
                   .WithMany(u => u.ShoppingLists)
                   .HasForeignKey(s => s.PucharsedByUserId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            AppDbContextSeeder seeder = new AppDbContextSeeder();
+            seeder.SeedData(modelBuilder);
         }
     }
 }

@@ -64,15 +64,6 @@ namespace Flatie.Db
             _dbSet.Remove(entity);
         }
 
-        // public async Task DeleteAsync(TEntity entity)
-        // {
-        //     if (_dbContext.Entry(entity).State == EntityState.Detached)
-        //     {
-        //         _dbSet.Attach(entity);
-        //     }
-        //     _dbSet.Remove(entity);
-        // }
-
         public void SaveChanges()
         {
             _dbContext.SaveChanges();
