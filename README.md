@@ -9,9 +9,6 @@ Welcome to the backend repository of Flatie, the Collaborative Home Management P
 - [Technologies Used](#technologies-used)
 - [Getting Started](#getting-started)
 - [Configuration](#configuration)
-- [API Documentation](#api-documentation)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Project Overview
 
