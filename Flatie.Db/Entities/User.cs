@@ -1,5 +1,4 @@
 using System.ComponentModel.DataAnnotations.Schema;
-using Flatie.Shared.Enums;
 
 namespace Flatie.Db.Entities
 {
