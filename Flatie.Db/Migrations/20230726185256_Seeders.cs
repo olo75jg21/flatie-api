@@ -4,10 +4,12 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace Flatie.Db.Migrations
 {
     /// <inheritdoc />
-    public partial class Initial : Migration
+    public partial class Seeders : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -112,8 +114,8 @@ namespace Flatie.Db.Migrations
                     HomeSpaceId = table.Column<int>(type: "integer", nullable: false),
                     InvitedByUserId = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
-                    start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    end = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    Start = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    End = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -198,7 +200,7 @@ namespace Flatie.Db.Migrations
                     Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     Message = table.Column<string>(type: "text", nullable: false),
-                    read = table.Column<bool>(type: "boolean", nullable: false),
+                    Read = table.Column<bool>(type: "boolean", nullable: false),
                     UserId = table.Column<int>(type: "integer", nullable: true),
                     HomeSpaceId = table.Column<int>(type: "integer", nullable: true),
                     NotificationTypeId = table.Column<int>(type: "integer", nullable: true),
@@ -327,6 +329,127 @@ namespace Flatie.Db.Migrations
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id");
+                });
+
+            migrationBuilder.InsertData(
+                table: "HomeSpace",
+                columns: new[] { "Id", "CreatedAt", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8092), "Living Room" },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8094), "Kitchen" },
+                    { 3, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8096), "Bedroom" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "NotificationType",
+                columns: new[] { "Id", "CreatedAt", "TypeName" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8310), "Important" },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8311), "Regular" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "QuietHourImportance",
+                columns: new[] { "Id", "CreatedAt", "Rank" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8213), 1 },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8214), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingListCategory",
+                columns: new[] { "Id", "CreatedAt", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8170), "Dairy" },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8172), "Bakery" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserAppRole",
+                columns: new[] { "Id", "CreatedAt", "Name" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(7972), "Admin" },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(7975), "User" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "User",
+                columns: new[] { "Id", "CreatedAt", "Password", "UserAppRoleId", "Username" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8069), "adminpassword", 1, "admin" },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8072), "user1password", 2, "user1" },
+                    { 3, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8073), "user2password", 2, "user2" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Guest",
+                columns: new[] { "Id", "CreatedAt", "End", "HomeSpaceId", "InvitedByUserId", "Name", "Start" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8288), new DateTime(2023, 7, 29, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8291), 1, 1, "Guest 1", new DateTime(2023, 7, 27, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8290) },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8293), new DateTime(2023, 7, 30, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8294), 1, 2, "Guest 2", new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8293) }
+                });
+
+            migrationBuilder.InsertData(
+                table: "HomeSpaceMembers",
+                columns: new[] { "Id", "CreatedAt", "HomeSpaceId", "JoinedAt", "Role", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8245), 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8246), "Owner", 1 },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8249), 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8249), "Member", 2 },
+                    { 3, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8250), 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8250), "Member", 1 },
+                    { 4, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8251), 3, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8252), "Member", 3 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "HomeSpacePreference",
+                columns: new[] { "Id", "CreatedAt", "Description", "HomeSpaceId", "Title", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8269), "Preference 1 description", 1, "Preference 1", 1 },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8273), "Preference 2 description", 1, "Preference 2", 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Notification",
+                columns: new[] { "Id", "CreatedAt", "HomeSpaceId", "Message", "NotificationTypeId", "Read", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8135), 1, "Notification 1", 1, false, 1 },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8138), 1, "Notification 2", 2, true, 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "QuietHour",
+                columns: new[] { "Id", "CreatedAt", "End", "HomeSpaceId", "QuietHourImportanceId", "Reason", "Start", "UserId" },
+                values: new object[,]
+                {
+                    { 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8186), new DateTime(2023, 7, 26, 20, 52, 55, 951, DateTimeKind.Utc).AddTicks(8189), 1, 1, "Study time", new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8188), 1 },
+                    { 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8196), new DateTime(2023, 7, 28, 20, 52, 55, 951, DateTimeKind.Utc).AddTicks(8198), 1, 2, "Quiet reading", new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8197), 2 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "ShoppingList",
+                columns: new[] { "Id", "Amount", "CategoryId", "CreatedAt", "HomeSpaceId", "ItemName", "PucharsedByUserId", "PurchasePrice", "RequestedByUserId" },
+                values: new object[,]
+                {
+                    { 1, 2, 1, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8151), 1, "Milk", 1, 5, 2 },
+                    { 2, 3, 2, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8155), 1, "Bread", 2, 3, 1 }
+                });
+
+            migrationBuilder.InsertData(
+                table: "UserTask",
+                columns: new[] { "Id", "Completed", "CreatedAt", "Description", "DueDate", "HomeSpaceId", "RewardPoints", "Title", "UserId" },
+                values: new object[,]
+                {
+                    { 1, false, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8227), "Finish the project by next week", new DateTime(2023, 8, 2, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8228), 1, 100, "Complete assignment", 1 },
+                    { 2, true, new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8229), "Get milk, eggs, and bread", new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8230), 1, 50, "Buy groceries", 2 }
                 });
 
             migrationBuilder.CreateIndex(

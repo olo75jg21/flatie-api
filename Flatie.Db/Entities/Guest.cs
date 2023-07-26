@@ -9,8 +9,8 @@ namespace Flatie.Db.Entities
         public int InvitedByUserId { get; set; }
         public string Name { get; set; } = null!;
 
-        public DateTime start { get; set; }
-        public DateTime end { get; set; }
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
 
         [ForeignKey("HomeSpaceId")]
         public HomeSpace? HomeSpace { get; set; }

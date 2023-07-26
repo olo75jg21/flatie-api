@@ -6,7 +6,7 @@ namespace Flatie.Db.Entities
     public class Notification : Base
     {
         public string Message { get; set; } = null!;
-        public bool read { get; set; } = false;
+        public bool Read { get; set; } = false;
 
         public int? UserId { get; set; }
         public int? HomeSpaceId { get; set; }

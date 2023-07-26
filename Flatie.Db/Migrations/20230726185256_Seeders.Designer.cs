@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flatie.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230723101542_Initial")]
-    partial class Initial
+    [Migration("20230726185256_Seeders")]
+    partial class Seeders
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,9 @@ namespace Flatie.Db.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
 
+                    b.Property<DateTime>("End")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<int>("HomeSpaceId")
                         .HasColumnType("integer");
 
@@ -46,10 +49,7 @@ namespace Flatie.Db.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("end")
-                        .HasColumnType("timestamp with time zone");
-
-                    b.Property<DateTime>("start")
+                    b.Property<DateTime>("Start")
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
@@ -59,6 +59,28 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("InvitedByUserId");
 
                     b.ToTable("Guest");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8288),
+                            End = new DateTime(2023, 7, 29, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8291),
+                            HomeSpaceId = 1,
+                            InvitedByUserId = 1,
+                            Name = "Guest 1",
+                            Start = new DateTime(2023, 7, 27, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8290)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8293),
+                            End = new DateTime(2023, 7, 30, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8294),
+                            HomeSpaceId = 1,
+                            InvitedByUserId = 2,
+                            Name = "Guest 2",
+                            Start = new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8293)
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.HomeSpace", b =>
@@ -79,6 +101,26 @@ namespace Flatie.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("HomeSpace");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8092),
+                            Name = "Living Room"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8094),
+                            Name = "Kitchen"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8096),
+                            Name = "Bedroom"
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.HomeSpaceMember", b =>
@@ -112,6 +154,44 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("HomeSpaceMembers");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8245),
+                            HomeSpaceId = 1,
+                            JoinedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8246),
+                            Role = "Owner",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8249),
+                            HomeSpaceId = 1,
+                            JoinedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8249),
+                            Role = "Member",
+                            UserId = 2
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8250),
+                            HomeSpaceId = 2,
+                            JoinedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8250),
+                            Role = "Member",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8251),
+                            HomeSpaceId = 3,
+                            JoinedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8252),
+                            Role = "Member",
+                            UserId = 3
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.HomeSpacePreference", b =>
@@ -146,6 +226,26 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("HomeSpacePreference");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8269),
+                            Description = "Preference 1 description",
+                            HomeSpaceId = 1,
+                            Title = "Preference 1",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8273),
+                            Description = "Preference 2 description",
+                            HomeSpaceId = 1,
+                            Title = "Preference 2",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.Notification", b =>
@@ -169,11 +269,11 @@ namespace Flatie.Db.Migrations
                     b.Property<int?>("NotificationTypeId")
                         .HasColumnType("integer");
 
+                    b.Property<bool>("Read")
+                        .HasColumnType("boolean");
+
                     b.Property<int?>("UserId")
                         .HasColumnType("integer");
-
-                    b.Property<bool>("read")
-                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 
@@ -184,6 +284,28 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Notification");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8135),
+                            HomeSpaceId = 1,
+                            Message = "Notification 1",
+                            NotificationTypeId = 1,
+                            Read = false,
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8138),
+                            HomeSpaceId = 1,
+                            Message = "Notification 2",
+                            NotificationTypeId = 2,
+                            Read = true,
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.NotificationType", b =>
@@ -204,6 +326,20 @@ namespace Flatie.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("NotificationType");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8310),
+                            TypeName = "Important"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8311),
+                            TypeName = "Regular"
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.QuietHour", b =>
@@ -245,6 +381,30 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("QuietHour");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8186),
+                            End = new DateTime(2023, 7, 26, 20, 52, 55, 951, DateTimeKind.Utc).AddTicks(8189),
+                            HomeSpaceId = 1,
+                            QuietHourImportanceId = 1,
+                            Reason = "Study time",
+                            Start = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8188),
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8196),
+                            End = new DateTime(2023, 7, 28, 20, 52, 55, 951, DateTimeKind.Utc).AddTicks(8198),
+                            HomeSpaceId = 1,
+                            QuietHourImportanceId = 2,
+                            Reason = "Quiet reading",
+                            Start = new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8197),
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.QuietHourImportance", b =>
@@ -264,6 +424,20 @@ namespace Flatie.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("QuietHourImportance");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8213),
+                            Rank = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8214),
+                            Rank = 2
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.ShoppingList", b =>
@@ -310,6 +484,32 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("RequestedByUserId");
 
                     b.ToTable("ShoppingList");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Amount = 2,
+                            CategoryId = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8151),
+                            HomeSpaceId = 1,
+                            ItemName = "Milk",
+                            PucharsedByUserId = 1,
+                            PurchasePrice = 5,
+                            RequestedByUserId = 2
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Amount = 3,
+                            CategoryId = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8155),
+                            HomeSpaceId = 1,
+                            ItemName = "Bread",
+                            PucharsedByUserId = 2,
+                            PurchasePrice = 3,
+                            RequestedByUserId = 1
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.ShoppingListCategory", b =>
@@ -330,6 +530,20 @@ namespace Flatie.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("ShoppingListCategory");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8170),
+                            Name = "Dairy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8172),
+                            Name = "Bakery"
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.User", b =>
@@ -359,6 +573,32 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserAppRoleId");
 
                     b.ToTable("User");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8069),
+                            Password = "adminpassword",
+                            UserAppRoleId = 1,
+                            Username = "admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8072),
+                            Password = "user1password",
+                            UserAppRoleId = 2,
+                            Username = "user1"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8073),
+                            Password = "user2password",
+                            UserAppRoleId = 2,
+                            Username = "user2"
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.UserAppRole", b =>
@@ -379,6 +619,20 @@ namespace Flatie.Db.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UserAppRole");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(7972),
+                            Name = "Admin"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(7975),
+                            Name = "User"
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.UserTask", b =>
@@ -422,6 +676,32 @@ namespace Flatie.Db.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("UserTask");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Completed = false,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8227),
+                            Description = "Finish the project by next week",
+                            DueDate = new DateTime(2023, 8, 2, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8228),
+                            HomeSpaceId = 1,
+                            RewardPoints = 100,
+                            Title = "Complete assignment",
+                            UserId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Completed = true,
+                            CreatedAt = new DateTime(2023, 7, 26, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8229),
+                            Description = "Get milk, eggs, and bread",
+                            DueDate = new DateTime(2023, 7, 28, 18, 52, 55, 951, DateTimeKind.Utc).AddTicks(8230),
+                            HomeSpaceId = 1,
+                            RewardPoints = 50,
+                            Title = "Buy groceries",
+                            UserId = 2
+                        });
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.Guest", b =>

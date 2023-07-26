@@ -4,6 +4,7 @@ namespace Flatie.Db.Entities
 {
     public class HomeSpaceMember : Base
     {
+        // TODO create a entity for Role
         public string Role { get; set; } = null!;
         public DateTime JoinedAt { get; set; }
 
