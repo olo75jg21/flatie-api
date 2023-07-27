@@ -51,7 +51,6 @@ namespace Flatie.Api
 
             CreateMap<UserTask, UserTaskDto>().ReverseMap();
             CreateMap<UserTask, UserTaskDetailDto>().ReverseMap();
-
         }
     }
 }

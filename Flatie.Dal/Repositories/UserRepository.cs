@@ -12,6 +12,19 @@ namespace Flatie.Dal.Repositories
 
         }
 
+        public async Task<User> GetByIdWithDetailsAsync(int id)
+        {
+            return await _dbContext.Set<User>()
+                .Include(u => u.UserAppRole)
+                .Include(u => u.Notifications)
+                .Include(u => u.ShoppingLists)
+                .Include(u => u.QuietHours)
+                .Include(u => u.Guests)
+                .Include(u => u.UserTasks)
+                .Include(u => u.HomeSpaces)
+                .SingleAsync(u => u.Id == id);
+        }
+
         public async Task<List<User>> GetAllWithDetailsAsync()
         {
             return await _dbContext.Set<User>()
@@ -22,12 +35,7 @@ namespace Flatie.Dal.Repositories
                 .Include(u => u.Guests)
                 .Include(u => u.UserTasks)
                 .Include(u => u.HomeSpaces)
-                .Include(u => u.HomeSpaces)
-                .Include(u => u.HomeSpaces)
-                .Include(u => u.HomeSpaces)
-                .Include(u => u.HomeSpaces)
                 .ToListAsync();
         }
-
     }
 }

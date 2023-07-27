@@ -5,7 +5,6 @@ namespace Flatie.Dto.Dto
         public int Id { get; set; }
         public string Username { get; set; } = null!;
         public string Password { get; set; } = null!; // TODO do not send
-        public int? UserAppRoleId { get; set; }
 
         // Navigation Properties
         public UserAppRoleDto? UserAppRole { get; set; }

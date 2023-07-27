@@ -5,6 +5,9 @@ namespace Flatie.Api.Controllers.Interfaces
 {
     public interface IUserController
     {
+        Task<ActionResult<UserDto>> GetSingle(int id);
+        Task<ActionResult<UserDetailDto>> GetSingleWithDetails(int id);
         Task<ActionResult<IEnumerable<UserDto>>> GetAll();
+        Task<ActionResult<IEnumerable<UserDetailDto>>> GetAllWithDetails();
     }
 }

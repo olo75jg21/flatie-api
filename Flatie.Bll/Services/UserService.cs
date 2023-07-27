@@ -16,6 +16,20 @@ namespace Flatie.Bll.Services
             _userRepository = userRepository;
         }
 
+        public async Task<UserDto> GetSingle(int id)
+        {
+            var user = await _userRepository.GetByIdAsync(id);
+
+            return _mapper.Map<UserDto>(user);
+        }
+
+        public async Task<UserDetailDto> GetSingleWithDetails(int id)
+        {
+            var user = await _userRepository.GetByIdWithDetailsAsync(id);
+
+            return _mapper.Map<UserDetailDto>(user);
+        }
+
         public async Task<IEnumerable<UserDto>> GetAll()
         {
             var users = await _userRepository.GetAllAsync();
