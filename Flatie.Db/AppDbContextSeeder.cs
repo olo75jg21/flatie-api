@@ -54,11 +54,17 @@ namespace Flatie.Db
                            new UserTask { Id = 2, Title = "Buy groceries", Description = "Get milk, eggs, and bread", Completed = true, DueDate = DateTime.UtcNow.AddDays(2), RewardPoints = 50, UserId = 2, HomeSpaceId = 1 }
                        );
 
+            modelBuilder.Entity<HomeSpaceMemberRole>().HasData(
+                            new HomeSpaceMemberRole { Id = 1, Role = "Owner" },
+                            new HomeSpaceMemberRole { Id = 2, Role = "Admin" },
+                            new HomeSpaceMemberRole { Id = 3, Role = "Member" }
+                        );
+
             modelBuilder.Entity<HomeSpaceMember>().HasData(
-                            new HomeSpaceMember { Id = 1, Role = "Owner", JoinedAt = DateTime.UtcNow, HomeSpaceId = 1, UserId = 1 },
-                            new HomeSpaceMember { Id = 2, Role = "Member", JoinedAt = DateTime.UtcNow, HomeSpaceId = 1, UserId = 2 },
-                            new HomeSpaceMember { Id = 3, Role = "Member", JoinedAt = DateTime.UtcNow, HomeSpaceId = 2, UserId = 1 },
-                            new HomeSpaceMember { Id = 4, Role = "Member", JoinedAt = DateTime.UtcNow, HomeSpaceId = 3, UserId = 3 }
+                            new HomeSpaceMember { Id = 1, HomeSpaceMemberRoleId = 1, JoinedAt = DateTime.UtcNow, HomeSpaceId = 1, UserId = 1 },
+                            new HomeSpaceMember { Id = 2, HomeSpaceMemberRoleId = 2, JoinedAt = DateTime.UtcNow, HomeSpaceId = 1, UserId = 2 },
+                            new HomeSpaceMember { Id = 3, HomeSpaceMemberRoleId = 3, JoinedAt = DateTime.UtcNow, HomeSpaceId = 2, UserId = 1 },
+                            new HomeSpaceMember { Id = 4, HomeSpaceMemberRoleId = 3, JoinedAt = DateTime.UtcNow, HomeSpaceId = 3, UserId = 3 }
                         );
 
             modelBuilder.Entity<HomeSpacePreference>().HasData(
