@@ -5,7 +5,7 @@ namespace Flatie.Db
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        protected readonly AppDbContext _dbContext;
+        protected AppDbContext _dbContext;
         private readonly DbSet<TEntity> _dbSet;
 
         public Repository(AppDbContext dbContext)
