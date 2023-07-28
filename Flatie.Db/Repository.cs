@@ -14,6 +14,16 @@ namespace Flatie.Db
             _dbSet = _dbContext.Set<TEntity>();
         }
 
+        public async Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter)
+        {
+            if (await _dbSet.AnyAsync(filter))
+            {
+                return true;
+            }
+
+            return false;
+        }
+
         public async Task<List<TEntity>> GetAllAsync()
         {
             return await _dbSet.ToListAsync();

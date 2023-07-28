@@ -1,6 +1,7 @@
 using AutoMapper;
 using Flatie.Db.Entities;
 using Flatie.Dto.Dto;
+using Flatie.Dto.Fvo;
 
 namespace Flatie.Api
 {
@@ -8,6 +9,12 @@ namespace Flatie.Api
     {
         public AutoMapperProfile()
         {
+            CreateMap<UserRegisterFvo, UserRegisterDto>().ReverseMap();
+            CreateMap<UserLoginFvo, UserLoginDto>().ReverseMap();
+
+            CreateMap<UserRegisterDto, User>().ReverseMap();
+            CreateMap<UserLoginDto, User>().ReverseMap();
+
             CreateMap<Guest, GuestDto>().ReverseMap();
             CreateMap<Guest, GuestDetailDto>().ReverseMap();
 

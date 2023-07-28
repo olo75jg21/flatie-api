@@ -4,6 +4,7 @@ namespace Flatie.Db
 {
     public interface IRepository<TEntity> where TEntity : class
     {
+        Task<bool> AnyAsync(Expression<Func<TEntity, bool>> filter);
         Task<List<TEntity>> GetAllAsync();
         Task<TEntity?> GetByIdAsync(int id);
         Task<List<TEntity>> FindAsync(Expression<Func<TEntity, bool>> filter);

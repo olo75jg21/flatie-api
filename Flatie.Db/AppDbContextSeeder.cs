@@ -1,3 +1,5 @@
+using System.Security.Cryptography;
+using System.Text;
 using Flatie.Db.Entities;
 using Microsoft.EntityFrameworkCore;
 
@@ -5,6 +7,15 @@ namespace Flatie.Db
 {
     public class AppDbContextSeeder
     {
+        // Method created only for seeding purpose
+        public static void CreatePasswordHash(string password, out byte[] passwordHash, out byte[] passwordSalt)
+        {
+            using var hmac = new HMACSHA512();
+
+            passwordSalt = hmac.Key;
+            passwordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
+        }
+
         public void SeedData(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserAppRole>().HasData(
@@ -12,11 +23,23 @@ namespace Flatie.Db
                             new UserAppRole { Id = 2, Name = "User" }
                         );
 
+            byte[] passwordHash, passwordSalt;
+
+            CreatePasswordHash("adminpassword", out passwordHash, out passwordSalt);
+
             modelBuilder.Entity<User>().HasData(
-                            new User { Id = 1, Username = "admin", Password = "adminpassword", UserAppRoleId = 1 },
-                            new User { Id = 2, Username = "user1", Password = "user1password", UserAppRoleId = 2 },
-                            new User { Id = 3, Username = "user2", Password = "user2password", UserAppRoleId = 2 }
-                        );
+                new User { Id = 1, Username = "admin", PasswordHash = passwordHash, PasswordSalt = passwordSalt, UserAppRoleId = 1 }
+            );
+
+            CreatePasswordHash("user1password", out passwordHash, out passwordSalt);
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 2, Username = "user1", PasswordHash = passwordHash, PasswordSalt = passwordSalt, UserAppRoleId = 2 }
+            );
+
+            CreatePasswordHash("user2password", out passwordHash, out passwordSalt);
+            modelBuilder.Entity<User>().HasData(
+                new User { Id = 3, Username = "user2", PasswordHash = passwordHash, PasswordSalt = passwordSalt, UserAppRoleId = 2 }
+            );
 
             modelBuilder.Entity<HomeSpace>().HasData(
                             new HomeSpace { Id = 1, Name = "Living Room" },

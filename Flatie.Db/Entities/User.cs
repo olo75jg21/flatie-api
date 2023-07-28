@@ -6,7 +6,9 @@ namespace Flatie.Db.Entities
     public class User : Base
     {
         public string Username { get; set; } = null!;
-        public string Password { get; set; } = null!;
+        public byte[] PasswordHash { get; set; } = new byte[0];
+        public byte[] PasswordSalt { get; set; } = new byte[0];
+
         public int? UserAppRoleId { get; set; }
 
         [ForeignKey("UserAppRoleId")]

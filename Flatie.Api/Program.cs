@@ -10,9 +10,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddScoped<IUserAppRoleRepository, UserAppRoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 builder.Services.AddTransient<IUserAppRoleService, UserAppRoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IAuthService, AuthService>();
 
 builder.Services.AddAutoMapper(typeof(AutoMapperProfile));
 
