@@ -18,9 +18,20 @@ namespace Flatie.Bll.Services
             _userRepository = userRepository;
         }
 
-        public Task<UserLoginDto> Login(UserLoginFvo user)
+        public async Task<UserLoginDto> Login(UserLoginFvo userLoginFvo)
         {
-            throw new NotImplementedException();
+            var userTbl = await _userRepository
+                .FirstOrDefaultAsync(u => u.Username.ToLower() == userLoginFvo.Username.ToLower());
+
+            if (userTbl is null || !VerifyPasswordHash(userLoginFvo.Password, userTbl.PasswordHash, userTbl.PasswordSalt))
+            {
+                throw new KeyNotFoundException("Wrong credentials");
+            }
+
+            var userLoginDto = _mapper.Map<UserLoginDto>(userTbl);
+            // userLoginDto.Id = userTbl.Id;
+
+            return userLoginDto;
         }
 
         public async Task<bool> Register(UserRegisterFvo userRegisterFvo)
@@ -37,7 +48,8 @@ namespace Flatie.Bll.Services
             userRegisterDto.PasswordHash = passwordHash;
             userRegisterDto.PasswordSalt = passwordSalt;
 
-            _userRepository.Add(_mapper.Map<User>(userRegisterDto));
+            var userTbl = _mapper.Map<User>(userRegisterDto);
+            _userRepository.Add(userTbl);
             await _userRepository.SaveChangesAsync();
 
             return true;
@@ -59,6 +71,15 @@ namespace Flatie.Bll.Services
             {
                 passwordSalt = hmac.Key;
                 passwordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+            }
+        }
+
+        private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
+        {
+            using (var hmac = new System.Security.Cryptography.HMACSHA512(passwordSalt))
+            {
+                var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
+                return computedHash.SequenceEqual(passwordHash);
             }
         }
     }

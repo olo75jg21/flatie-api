@@ -1,6 +1,7 @@
 using AutoMapper;
 using Flatie.Api.Controllers.Interfaces;
 using Flatie.Bll.Services.Interfaces;
+using Flatie.Dto.Dto;
 using Flatie.Dto.Fvo;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,27 @@ namespace Flatie.Api.Controllers
         {
             _mapper = mapper;
             _authService = authService;
+        }
+
+        [HttpPost("Login")]
+        public async Task<ActionResult<UserLoginDto>> Login(UserLoginFvo userLoginFvo)
+        {
+            if (userLoginFvo is null)
+            {
+                return BadRequest();
+            }
+
+            try
+            {
+                var userLoginDto = await _authService.Login(userLoginFvo);
+
+                return Ok(userLoginDto);
+            }
+            catch (Exception exception)
+            {
+                Console.WriteLine(exception.Message);
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
 
         [HttpPost("Register")]
