@@ -4,5 +4,6 @@ namespace Flatie.Dto.Dto
     {
         public int Id { get; set; }
         public string Username { get; set; } = null!;
+        public string Token { get; set; } = null!;
     }
 }

@@ -1,20 +1,26 @@
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using AutoMapper;
 using Flatie.Bll.Services.Interfaces;
 using Flatie.Dal.Repositories.Interfaces;
 using Flatie.Db.Entities;
 using Flatie.Dto.Dto;
 using Flatie.Dto.Fvo;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Flatie.Bll.Services
 {
     public class AuthService : IAuthService
     {
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
         private readonly IUserRepository _userRepository;
 
-        public AuthService(IMapper mapper, IUserRepository userRepository)
+        public AuthService(IMapper mapper, IConfiguration configuration, IUserRepository userRepository)
         {
             _mapper = mapper;
+            _configuration = configuration;
             _userRepository = userRepository;
         }
 
@@ -29,7 +35,7 @@ namespace Flatie.Bll.Services
             }
 
             var userLoginDto = _mapper.Map<UserLoginDto>(userTbl);
-            // userLoginDto.Id = userTbl.Id;
+            userLoginDto.Token = CreateToken(userTbl);
 
             return userLoginDto;
         }
@@ -81,6 +87,38 @@ namespace Flatie.Bll.Services
                 var computedHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
                 return computedHash.SequenceEqual(passwordHash);
             }
+        }
+
+        private string CreateToken(User userTbl)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.NameIdentifier, userTbl.Id.ToString()),
+                new Claim(ClaimTypes.Name, userTbl.Username)
+            };
+
+            var appSettingsToken = _configuration.GetSection("AppSettings:Token").Value;
+
+            if (appSettingsToken is null)
+            {
+                throw new Exception("AppSettings Token is null");
+            }
+
+            SymmetricSecurityKey key = new SymmetricSecurityKey(System.Text.Encoding.UTF8.GetBytes(appSettingsToken));
+
+            SigningCredentials creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha512Signature);
+
+            var tokenDescriptior = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(claims),
+                Expires = DateTime.Now.AddDays(1),
+                SigningCredentials = creds
+            };
+
+            JwtSecurityTokenHandler tokenHandler = new JwtSecurityTokenHandler();
+            SecurityToken token = tokenHandler.CreateToken(tokenDescriptior);
+
+            return tokenHandler.WriteToken(token);
         }
     }
 }
