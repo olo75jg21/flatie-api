@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Flatie.Api.Controllers
 {
-    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class UserController : Controller, IUserController
