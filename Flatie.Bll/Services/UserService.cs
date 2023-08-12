@@ -1,7 +1,9 @@
+using System.Security.Claims;
 using AutoMapper;
 using Flatie.Bll.Services.Interfaces;
 using Flatie.Dal.Repositories.Interfaces;
 using Flatie.Dto.Dto;
+using Microsoft.AspNetCore.Http;
 
 namespace Flatie.Bll.Services
 {
@@ -33,6 +35,7 @@ namespace Flatie.Bll.Services
         public async Task<IEnumerable<UserDto>> GetAll()
         {
             var users = await _userRepository.GetAllAsync();
+
             return users.Select(e => _mapper.Map<UserDto>(e));
         }
 

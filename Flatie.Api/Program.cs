@@ -12,10 +12,14 @@ using Swashbuckle.AspNetCore.Filters;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddScoped<IHomeSpaceRepository, HomeSpaceRepository>();
 builder.Services.AddScoped<IUserAppRoleRepository, UserAppRoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
+builder.Services.AddTransient<IHomeSpaceService, HomeSpaceService>();
 builder.Services.AddTransient<IUserAppRoleService, UserAppRoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
