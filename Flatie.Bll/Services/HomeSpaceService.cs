@@ -18,7 +18,8 @@ namespace Flatie.Bll.Services
 
         public async Task<IEnumerable<HomeSpaceDto>> GetUserHomeSpaces(int id)
         {
-            var homeSpaces = await _homeSpaceRepository.GetAllAsync();
+            var homeSpaces = await _homeSpaceRepository.FindAsync(homeSpace => homeSpace.Users
+                .Any(user => user.Id == id));
             return homeSpaces.Select(e => _mapper.Map<HomeSpaceDto>(e));
         }
     }
