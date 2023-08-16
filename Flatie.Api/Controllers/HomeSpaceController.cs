@@ -25,5 +25,11 @@ namespace Flatie.Api.Controllers
 
             return Ok(response);
         }
+
+        [HttpGet("{id}/members")]
+        public Task<ActionResult<IEnumerable<UserDto>>> GetAllHomeSpaceMembers(int id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -1,7 +1,6 @@
 using Flatie.Api.Controllers.Interfaces;
 using Flatie.Bll.Services.Interfaces;
 using Flatie.Dto.Dto;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flatie.Api.Controllers
