@@ -20,6 +20,7 @@ namespace Flatie.Bll.Services
         {
             var homeSpaces = await _homeSpaceRepository.FindAsync(homeSpace => homeSpace.Users
                 .Any(user => user.Id == id));
+
             return homeSpaces.Select(e => _mapper.Map<HomeSpaceDto>(e));
         }
     }
