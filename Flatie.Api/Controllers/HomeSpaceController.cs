@@ -18,7 +18,7 @@ namespace Flatie.Api.Controllers
             _homeSpaceService = homeSpaceService;
         }
 
-        [HttpGet("/UserHomespaces/{id}")]
+        [HttpGet("UserHomespaces/{id}")]
         public async Task<ActionResult<IEnumerable<HomeSpaceDto>>> GetUserHomeSpaces(int id)
         {
             var response = await _homeSpaceService.GetUserHomeSpaces(id);
@@ -26,10 +26,24 @@ namespace Flatie.Api.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{id}/members")]
-        public Task<ActionResult<IEnumerable<UserDto>>> GetAllHomeSpaceMembers(int id)
+        [HttpGet("{homeSpaceId}/members")]
+        public async Task<ActionResult<IEnumerable<UserDto>>> GetAllHomeSpaceMembers(int homeSpaceId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var homeSpaceMembers = await _homeSpaceService.GetAllHomeSpaceMembers(homeSpaceId);
+
+                if (homeSpaceMembers is null)
+                {
+                    return NoContent();
+                }
+
+                return Ok(homeSpaceMembers);
+            }
+            catch (Exception exception)
+            {
+                return BadRequest(exception);
+            }
         }
     }
 }
