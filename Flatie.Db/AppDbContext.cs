@@ -11,6 +11,7 @@ namespace Flatie.Db
         public DbSet<HomeSpace> HomeSpaces { get; set; } = null!;
         public DbSet<HomeSpaceMember> HomeSpaceMembers { get; set; } = null!;
         public DbSet<HomeSpacePreference> HomeSpacePreferences { get; set; } = null!;
+        public DbSet<Invitation> Invitations { get; set; } = null!;
         public DbSet<Notification> Notifications { get; set; } = null!;
         public DbSet<QuietHour> QuietHours { get; set; } = null!;
         public DbSet<ShoppingList> ShoppingLists { get; set; } = null!;
@@ -29,6 +30,12 @@ namespace Flatie.Db
                   .WithMany(u => u.ShoppingLists)
                   .HasForeignKey(s => s.PucharsedByUserId)
                   .OnDelete(DeleteBehavior.Restrict);
+
+            modelBuilder.Entity<Invitation>()
+                .HasOne(inv => inv.RecipientUser)
+                .WithMany(user => user.Invitations)
+                .HasForeignKey(inv => inv.RecipientUserId)
+                .OnDelete(DeleteBehavior.Restrict);
 
             AppDbContextSeeder seeder = new AppDbContextSeeder();
             seeder.SeedData(modelBuilder);

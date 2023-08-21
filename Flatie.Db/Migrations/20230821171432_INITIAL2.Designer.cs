@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace Flatie.Db.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230804193538_initial1")]
-    partial class initial1
+    [Migration("20230821171432_INITIAL2")]
+    partial class INITIAL2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -64,22 +64,22 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480),
-                            End = new DateTime(2023, 8, 7, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100),
+                            End = new DateTime(2023, 8, 24, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100),
                             HomeSpaceId = 1,
                             InvitedByUserId = 1,
                             Name = "Guest 1",
-                            Start = new DateTime(2023, 8, 5, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480)
+                            Start = new DateTime(2023, 8, 22, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480),
-                            End = new DateTime(2023, 8, 8, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100),
+                            End = new DateTime(2023, 8, 25, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100),
                             HomeSpaceId = 1,
                             InvitedByUserId = 2,
                             Name = "Guest 2",
-                            Start = new DateTime(2023, 8, 6, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9480)
+                            Start = new DateTime(2023, 8, 23, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8100)
                         });
                 });
 
@@ -106,19 +106,19 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9170),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7820),
                             Name = "Living Room"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9170),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7820),
                             Name = "Kitchen"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9170),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7880),
                             Name = "Bedroom"
                         });
                 });
@@ -160,37 +160,37 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9430),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             HomeSpaceId = 1,
                             HomeSpaceMemberRoleId = 1,
-                            JoinedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9430),
+                            JoinedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             HomeSpaceId = 1,
                             HomeSpaceMemberRoleId = 2,
-                            JoinedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            JoinedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             UserId = 2
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             HomeSpaceId = 2,
                             HomeSpaceMemberRoleId = 3,
-                            JoinedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            JoinedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             UserId = 1
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             HomeSpaceId = 3,
                             HomeSpaceMemberRoleId = 3,
-                            JoinedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9440),
+                            JoinedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8060),
                             UserId = 3
                         });
                 });
@@ -218,19 +218,19 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9420),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8040),
                             Role = "Owner"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9420),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8040),
                             Role = "Admin"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9420),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8040),
                             Role = "Member"
                         });
                 });
@@ -272,7 +272,7 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9460),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8080),
                             Description = "Preference 1 description",
                             HomeSpaceId = 1,
                             Title = "Preference 1",
@@ -281,12 +281,49 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9460),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8080),
                             Description = "Preference 2 description",
                             HomeSpaceId = 1,
                             Title = "Preference 2",
                             UserId = 2
                         });
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.Invitation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<int>("HomeSpaceId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("RecipientUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SenderUserId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HomeSpaceId");
+
+                    b.HasIndex("RecipientUserId");
+
+                    b.HasIndex("SenderUserId");
+
+                    b.ToTable("Invitation");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.Notification", b =>
@@ -330,7 +367,7 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9190),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7900),
                             HomeSpaceId = 1,
                             Message = "Notification 1",
                             NotificationTypeId = 1,
@@ -340,7 +377,7 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9190),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7900),
                             HomeSpaceId = 1,
                             Message = "Notification 2",
                             NotificationTypeId = 2,
@@ -372,13 +409,13 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9500),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8130),
                             TypeName = "Important"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9500),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8130),
                             TypeName = "Regular"
                         });
                 });
@@ -427,23 +464,23 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9260),
-                            End = new DateTime(2023, 8, 4, 21, 35, 37, 789, DateTimeKind.Utc).AddTicks(9260),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7960),
+                            End = new DateTime(2023, 8, 21, 19, 14, 32, 361, DateTimeKind.Utc).AddTicks(7960),
                             HomeSpaceId = 1,
                             QuietHourImportanceId = 1,
                             Reason = "Study time",
-                            Start = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9260),
+                            Start = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7960),
                             UserId = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9260),
-                            End = new DateTime(2023, 8, 6, 21, 35, 37, 789, DateTimeKind.Utc).AddTicks(9270),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7970),
+                            End = new DateTime(2023, 8, 23, 19, 14, 32, 361, DateTimeKind.Utc).AddTicks(7970),
                             HomeSpaceId = 1,
                             QuietHourImportanceId = 2,
                             Reason = "Quiet reading",
-                            Start = new DateTime(2023, 8, 6, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9270),
+                            Start = new DateTime(2023, 8, 23, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7970),
                             UserId = 2
                         });
                 });
@@ -470,13 +507,13 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9280),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7990),
                             Rank = 1
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9290),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7990),
                             Rank = 2
                         });
                 });
@@ -532,7 +569,7 @@ namespace Flatie.Db.Migrations
                             Id = 1,
                             Amount = 2,
                             CategoryId = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9210),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7920),
                             HomeSpaceId = 1,
                             ItemName = "Milk",
                             PucharsedByUserId = 1,
@@ -544,7 +581,7 @@ namespace Flatie.Db.Migrations
                             Id = 2,
                             Amount = 3,
                             CategoryId = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9210),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7930),
                             HomeSpaceId = 1,
                             ItemName = "Bread",
                             PucharsedByUserId = 2,
@@ -576,13 +613,13 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9240),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7940),
                             Name = "Dairy"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9240),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7950),
                             Name = "Bakery"
                         });
                 });
@@ -623,27 +660,27 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(8990),
-                            PasswordHash = new byte[] { 25, 60, 182, 231, 249, 158, 90, 42, 19, 182, 182, 128, 87, 249, 137, 64, 174, 230, 250, 165, 135, 107, 16, 184, 146, 244, 158, 249, 232, 78, 184, 43, 177, 208, 105, 199, 189, 35, 152, 219, 194, 91, 50, 14, 155, 188, 27, 217, 91, 83, 26, 200, 144, 77, 166, 181, 73, 71, 91, 253, 163, 209, 76, 75 },
-                            PasswordSalt = new byte[] { 165, 162, 195, 198, 14, 137, 54, 227, 43, 107, 161, 236, 204, 62, 110, 177, 11, 175, 87, 55, 188, 70, 101, 127, 32, 53, 202, 235, 143, 227, 23, 24, 131, 70, 108, 88, 118, 161, 201, 223, 15, 73, 6, 193, 59, 104, 195, 75, 158, 13, 58, 204, 52, 80, 148, 112, 128, 249, 147, 140, 195, 253, 179, 157, 74, 31, 0, 180, 27, 90, 101, 10, 21, 50, 193, 108, 252, 237, 156, 152, 240, 208, 185, 32, 87, 212, 10, 212, 199, 191, 26, 236, 86, 164, 77, 54, 228, 140, 60, 226, 58, 144, 222, 121, 171, 132, 135, 185, 0, 19, 14, 136, 122, 193, 191, 214, 116, 176, 167, 7, 154, 79, 158, 42, 245, 25, 43, 247 },
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7640),
+                            PasswordHash = new byte[] { 186, 54, 34, 68, 42, 148, 127, 102, 124, 111, 220, 34, 244, 179, 57, 168, 57, 151, 228, 59, 20, 199, 131, 183, 163, 40, 182, 21, 169, 170, 250, 7, 94, 28, 228, 228, 235, 248, 126, 225, 183, 184, 197, 127, 228, 120, 23, 215, 242, 181, 12, 221, 166, 63, 255, 110, 31, 60, 210, 220, 99, 34, 75, 198 },
+                            PasswordSalt = new byte[] { 173, 152, 136, 47, 129, 122, 100, 214, 9, 112, 72, 124, 177, 229, 117, 155, 217, 92, 128, 4, 172, 159, 187, 97, 138, 211, 60, 162, 217, 90, 39, 118, 216, 95, 191, 82, 158, 87, 44, 156, 156, 80, 133, 23, 71, 65, 25, 123, 40, 12, 192, 173, 156, 240, 251, 141, 4, 145, 211, 82, 115, 131, 239, 105, 190, 249, 208, 254, 98, 98, 181, 130, 249, 155, 212, 137, 19, 173, 59, 174, 254, 15, 151, 219, 85, 142, 57, 76, 239, 62, 134, 12, 80, 217, 158, 209, 68, 78, 212, 220, 111, 255, 43, 19, 153, 121, 98, 149, 42, 31, 221, 74, 59, 46, 30, 184, 22, 192, 161, 189, 43, 243, 80, 80, 179, 36, 12, 226 },
                             UserAppRoleId = 1,
                             Username = "admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9090),
-                            PasswordHash = new byte[] { 138, 160, 14, 35, 185, 232, 28, 93, 196, 33, 131, 197, 172, 77, 156, 211, 0, 43, 144, 82, 218, 238, 110, 88, 13, 64, 88, 239, 32, 240, 125, 101, 213, 116, 120, 0, 48, 123, 195, 97, 112, 65, 165, 39, 132, 218, 243, 18, 198, 160, 23, 181, 1, 109, 237, 81, 221, 31, 164, 157, 166, 43, 60, 180 },
-                            PasswordSalt = new byte[] { 46, 184, 68, 60, 208, 206, 87, 45, 12, 95, 98, 154, 104, 221, 64, 29, 166, 158, 229, 160, 143, 245, 101, 174, 153, 221, 139, 237, 115, 243, 157, 213, 126, 184, 177, 252, 21, 153, 241, 190, 17, 152, 179, 109, 171, 129, 135, 76, 177, 62, 200, 5, 57, 57, 199, 225, 92, 209, 136, 251, 72, 30, 224, 57, 142, 251, 201, 4, 76, 127, 164, 66, 23, 199, 187, 70, 133, 52, 137, 189, 247, 156, 178, 186, 255, 35, 25, 54, 67, 253, 241, 81, 188, 110, 99, 71, 211, 250, 70, 204, 89, 7, 154, 123, 122, 125, 169, 153, 114, 101, 66, 92, 56, 45, 0, 138, 104, 7, 188, 60, 57, 156, 83, 20, 88, 117, 85, 96 },
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7740),
+                            PasswordHash = new byte[] { 17, 111, 240, 28, 173, 44, 139, 166, 146, 195, 204, 99, 77, 215, 156, 24, 216, 190, 229, 156, 200, 140, 100, 216, 176, 227, 26, 117, 210, 88, 42, 255, 41, 215, 150, 108, 53, 175, 0, 85, 90, 113, 21, 70, 201, 145, 61, 72, 120, 165, 66, 166, 194, 224, 149, 148, 142, 32, 221, 196, 196, 106, 236, 94 },
+                            PasswordSalt = new byte[] { 99, 141, 23, 93, 63, 51, 11, 73, 47, 247, 175, 34, 13, 138, 199, 113, 151, 43, 20, 149, 60, 142, 162, 138, 222, 92, 147, 26, 62, 24, 74, 151, 49, 236, 184, 90, 234, 72, 37, 100, 9, 179, 226, 159, 57, 212, 3, 100, 155, 180, 162, 56, 184, 32, 224, 143, 228, 230, 223, 139, 34, 137, 52, 168, 16, 218, 188, 10, 181, 17, 227, 225, 92, 51, 128, 67, 65, 77, 174, 242, 8, 186, 123, 161, 17, 86, 161, 178, 149, 84, 127, 118, 2, 13, 38, 154, 189, 230, 249, 130, 41, 142, 146, 200, 231, 4, 233, 62, 70, 136, 166, 67, 87, 75, 54, 102, 200, 72, 249, 34, 215, 36, 78, 228, 66, 148, 50, 189 },
                             UserAppRoleId = 2,
                             Username = "user1"
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9150),
-                            PasswordHash = new byte[] { 43, 166, 169, 211, 164, 106, 10, 86, 47, 51, 103, 193, 128, 82, 244, 31, 229, 225, 1, 38, 111, 190, 62, 188, 180, 102, 24, 40, 16, 1, 90, 202, 202, 105, 11, 24, 81, 106, 136, 0, 228, 213, 85, 189, 149, 250, 40, 237, 205, 159, 185, 54, 73, 253, 236, 159, 81, 81, 1, 150, 28, 127, 24, 59 },
-                            PasswordSalt = new byte[] { 100, 68, 61, 149, 163, 32, 2, 128, 166, 71, 171, 242, 151, 135, 149, 227, 114, 216, 147, 220, 120, 66, 153, 220, 27, 249, 219, 87, 155, 6, 36, 239, 186, 76, 140, 80, 78, 158, 125, 138, 223, 161, 25, 70, 30, 152, 36, 116, 91, 72, 181, 215, 142, 178, 30, 107, 153, 175, 45, 175, 206, 199, 229, 136, 179, 25, 88, 98, 109, 35, 229, 243, 235, 91, 213, 248, 39, 15, 37, 5, 43, 32, 138, 160, 73, 231, 189, 175, 27, 77, 184, 228, 66, 78, 205, 106, 80, 243, 79, 94, 3, 125, 102, 33, 211, 133, 239, 201, 174, 114, 147, 217, 179, 103, 47, 202, 249, 212, 143, 176, 207, 187, 65, 252, 232, 107, 122, 44 },
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7800),
+                            PasswordHash = new byte[] { 55, 49, 24, 60, 188, 24, 124, 65, 75, 238, 87, 41, 93, 62, 66, 4, 90, 208, 176, 218, 234, 78, 125, 152, 122, 237, 238, 60, 184, 243, 172, 184, 120, 200, 226, 45, 206, 10, 128, 194, 216, 75, 170, 166, 186, 56, 189, 12, 142, 26, 17, 202, 136, 175, 127, 34, 174, 240, 238, 13, 150, 124, 93, 158 },
+                            PasswordSalt = new byte[] { 133, 75, 232, 79, 116, 121, 81, 163, 203, 145, 158, 142, 231, 110, 142, 3, 22, 244, 245, 46, 65, 227, 139, 115, 109, 139, 242, 150, 180, 108, 60, 192, 99, 156, 20, 52, 241, 122, 35, 74, 228, 65, 213, 70, 29, 143, 123, 141, 132, 52, 157, 141, 77, 194, 92, 94, 229, 137, 107, 125, 177, 26, 223, 12, 54, 196, 138, 19, 22, 245, 9, 71, 64, 236, 149, 160, 158, 204, 202, 16, 88, 14, 131, 117, 103, 83, 132, 204, 63, 111, 165, 30, 118, 191, 124, 138, 156, 195, 137, 96, 87, 134, 166, 139, 159, 170, 49, 26, 187, 141, 31, 128, 22, 217, 65, 219, 148, 194, 236, 99, 96, 178, 153, 59, 134, 26, 48, 16 },
                             UserAppRoleId = 2,
                             Username = "user2"
                         });
@@ -672,13 +709,13 @@ namespace Flatie.Db.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(8420),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7120),
                             Name = "Admin"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(8420),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(7130),
                             Name = "User"
                         });
                 });
@@ -730,9 +767,9 @@ namespace Flatie.Db.Migrations
                         {
                             Id = 1,
                             Completed = false,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9390),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8010),
                             Description = "Finish the project by next week",
-                            DueDate = new DateTime(2023, 8, 11, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9390),
+                            DueDate = new DateTime(2023, 8, 28, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8010),
                             HomeSpaceId = 1,
                             RewardPoints = 100,
                             Title = "Complete assignment",
@@ -742,9 +779,9 @@ namespace Flatie.Db.Migrations
                         {
                             Id = 2,
                             Completed = true,
-                            CreatedAt = new DateTime(2023, 8, 4, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9400),
+                            CreatedAt = new DateTime(2023, 8, 21, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8010),
                             Description = "Get milk, eggs, and bread",
-                            DueDate = new DateTime(2023, 8, 6, 19, 35, 37, 789, DateTimeKind.Utc).AddTicks(9400),
+                            DueDate = new DateTime(2023, 8, 23, 17, 14, 32, 361, DateTimeKind.Utc).AddTicks(8010),
                             HomeSpaceId = 1,
                             RewardPoints = 50,
                             Title = "Buy groceries",
@@ -815,6 +852,33 @@ namespace Flatie.Db.Migrations
                     b.Navigation("HomeSpace");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Flatie.Db.Entities.Invitation", b =>
+                {
+                    b.HasOne("Flatie.Db.Entities.HomeSpace", "HomeSpace")
+                        .WithMany()
+                        .HasForeignKey("HomeSpaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Flatie.Db.Entities.User", "RecipientUser")
+                        .WithMany("Invitations")
+                        .HasForeignKey("RecipientUserId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Flatie.Db.Entities.User", "SenderUser")
+                        .WithMany()
+                        .HasForeignKey("SenderUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("HomeSpace");
+
+                    b.Navigation("RecipientUser");
+
+                    b.Navigation("SenderUser");
                 });
 
             modelBuilder.Entity("Flatie.Db.Entities.Notification", b =>
@@ -951,6 +1015,8 @@ namespace Flatie.Db.Migrations
                     b.Navigation("Guests");
 
                     b.Navigation("HomeSpaceMembers");
+
+                    b.Navigation("Invitations");
 
                     b.Navigation("Notifications");
 

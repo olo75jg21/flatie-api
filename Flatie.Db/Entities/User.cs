@@ -19,6 +19,7 @@ namespace Flatie.Db.Entities
         public ICollection<QuietHour> QuietHours { get; set; } = new List<QuietHour>();
         public ICollection<Guest> Guests { get; set; } = new List<Guest>();
         public ICollection<UserTask> UserTasks { get; set; } = new List<UserTask>();
+        public ICollection<Invitation> Invitations { get; set; } = new List<Invitation>();
 
         public ICollection<HomeSpace> HomeSpaces { get; set; } = new List<HomeSpace>();
         public ICollection<HomeSpaceMember> HomeSpaceMembers { get; set; } = new List<HomeSpaceMember>();
