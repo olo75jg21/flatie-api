@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Flatie.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserAppRoleController : Controller, IUserAppRoleController
     {
         private readonly ILogger<UserAppRoleController> _logger;

@@ -18,11 +18,13 @@ builder.Services.AddScoped<IHomeSpaceRepository, HomeSpaceRepository>();
 builder.Services.AddScoped<IUserAppRoleRepository, UserAppRoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
+builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
 
 builder.Services.AddTransient<IHomeSpaceService, HomeSpaceService>();
 builder.Services.AddTransient<IUserAppRoleService, UserAppRoleService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IInvitationService, InvitationService>();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>

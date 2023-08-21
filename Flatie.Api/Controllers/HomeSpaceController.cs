@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Flatie.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class HomeSpaceController : Controller, IHomeSpaceController
     {
         private readonly ILogger<HomeSpaceController> _logger;

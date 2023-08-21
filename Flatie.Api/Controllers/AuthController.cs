@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Flatie.Api.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class AuthController : Controller, IAuthController
     {
         private readonly IMapper _mapper;
