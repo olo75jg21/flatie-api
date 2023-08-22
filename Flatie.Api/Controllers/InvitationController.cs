@@ -1,4 +1,5 @@
 using Flatie.Api.Controllers.Interfaces;
+using Flatie.Bll.Services.Interfaces;
 using Flatie.Dto.Dto;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,25 @@ namespace Flatie.Api.Controllers
     [Route("api/[controller]")]
     public class InvitationController : Controller, IInvitationController
     {
-        [HttpGet("{userId}/AllUserInvitations")]
-        public Task<ActionResult<IEnumerable<InvitationDto>>> GetUserInvitations(int userId)
+        protected readonly IInvitationService _invitationService;
+
+        public InvitationController(IInvitationService invitationService)
         {
-            throw new NotImplementedException();
+            _invitationService = invitationService;
+        }
+
+        [HttpGet("{userId}/AllUserInvitations")]
+        public async Task<ActionResult<IEnumerable<InvitationDto>>> GetUserInvitations(int userId)
+        {
+            try
+            {
+                var userInvitations = await _invitationService.GetUserInvitations(userId);
+                return Ok(userInvitations);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"An error occurred: {ex.Message}");
+            }
         }
     }
 }
