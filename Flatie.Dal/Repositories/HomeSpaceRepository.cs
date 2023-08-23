@@ -11,7 +11,7 @@ namespace Flatie.Dal.Repositories
         {
         }
 
-        public async Task<IEnumerable<User>> GetAllHomeSpaceMembers(int homeSpaceId)
+        public async Task<IEnumerable<User>> GetHomeSpaceMembers(int homeSpaceId)
         {
             var homeSpaceMemebers = await _dbContext.HomeSpaceMembers
                 .Where(homeSpaceMember => homeSpaceMember.HomeSpaceId == homeSpaceId)

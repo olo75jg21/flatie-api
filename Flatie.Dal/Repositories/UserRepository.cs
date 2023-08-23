@@ -37,5 +37,12 @@ namespace Flatie.Dal.Repositories
                 .Include(u => u.HomeSpaces)
                 .ToListAsync();
         }
+
+        public async Task<List<HomeSpace>> GetUserHomeSpacesAsync(int userId)
+        {
+            return await _dbContext.HomeSpaces
+                .Where(homeSpace => homeSpace.Users.Any(user => user.Id == userId))
+                .ToListAsync();
+        }
     }
 }

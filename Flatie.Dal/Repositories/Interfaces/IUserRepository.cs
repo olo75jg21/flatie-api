@@ -7,5 +7,6 @@ namespace Flatie.Dal.Repositories.Interfaces
     {
         Task<User> GetByIdWithDetailsAsync(int id);
         Task<List<User>> GetAllWithDetailsAsync();
+        Task<List<HomeSpace>> GetUserHomeSpacesAsync(int userId);
     }
 }

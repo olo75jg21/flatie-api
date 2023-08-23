@@ -8,5 +8,6 @@ namespace Flatie.Bll.Services.Interfaces
         Task<UserDetailDto> GetSingleWithDetails(int id);
         Task<IEnumerable<UserDto>> GetAll();
         Task<IEnumerable<UserDetailDto>> GetAllWithDetails();
+        Task<IEnumerable<HomeSpaceDto>> GetUserHomeSpaces(int userId);
     }
 }

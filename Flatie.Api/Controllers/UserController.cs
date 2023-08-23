@@ -29,7 +29,7 @@ namespace Flatie.Api.Controllers
             return user;
         }
 
-        [HttpGet("/User/WithDetails/{id}")]
+        [HttpGet("WithDetails/{id}")]
         public async Task<ActionResult<UserDetailDto>> GetSingleWithDetails(int id)
         {
             var user = await _userService.GetSingleWithDetails(id);
@@ -68,6 +68,19 @@ namespace Flatie.Api.Controllers
             return Ok(users);
         }
 
+        [HttpGet("{userId}/HomeSpaces")]
+        public async Task<ActionResult<IEnumerable<HomeSpaceDto>>> GetUserHomeSpaces(int userId)
+        {
+            try
+            {
+                var homeSpaces = await _userService.GetUserHomeSpaces(userId);
 
+                return Ok(homeSpaces);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Something went wrong {ex}");
+            }
+        }
     }
 }

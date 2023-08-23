@@ -18,14 +18,6 @@ namespace Flatie.Api.Controllers
             _homeSpaceService = homeSpaceService;
         }
 
-        [HttpGet("UserHomespaces/{id}")]
-        public async Task<ActionResult<IEnumerable<HomeSpaceDto>>> GetUserHomeSpaces(int id)
-        {
-            var response = await _homeSpaceService.GetUserHomeSpaces(id);
-
-            return Ok(response);
-        }
-
         [HttpGet("{homeSpaceId}/members")]
         public async Task<ActionResult<IEnumerable<UserDto>>> GetAllHomeSpaceMembers(int homeSpaceId)
         {

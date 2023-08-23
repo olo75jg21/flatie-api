@@ -16,7 +16,7 @@ namespace Flatie.Api.Controllers
             _invitationService = invitationService;
         }
 
-        [HttpGet("{userId}/AllUserInvitations")]
+        [HttpGet("{userId}/All")]
         public async Task<ActionResult<IEnumerable<InvitationDto>>> GetUserInvitations(int userId)
         {
             try

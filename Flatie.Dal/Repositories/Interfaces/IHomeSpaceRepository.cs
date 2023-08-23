@@ -5,6 +5,6 @@ namespace Flatie.Dal.Repositories.Interfaces
 {
     public interface IHomeSpaceRepository : IRepository<HomeSpace>
     {
-        Task<IEnumerable<User>> GetAllHomeSpaceMembers(int homeSpaceId);
+        Task<IEnumerable<User>> GetHomeSpaceMembers(int homeSpaceId);
     }
 }
