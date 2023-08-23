@@ -11,6 +11,7 @@ namespace Flatie.Api
         {
             CreateMap<UserRegisterFvo, UserRegisterDto>().ReverseMap();
             CreateMap<UserLoginFvo, UserLoginDto>().ReverseMap();
+            CreateMap<CreateInvitationsFvo, InvitationDto>().ReverseMap();
 
             CreateMap<UserRegisterDto, User>().ReverseMap();
             CreateMap<UserLoginDto, User>().ReverseMap();
@@ -28,6 +29,9 @@ namespace Flatie.Api
 
             CreateMap<HomeSpacePreference, HomeSpacePreferenceDto>().ReverseMap();
             CreateMap<HomeSpacePreference, HomeSpacePreferenceDetailDto>().ReverseMap();
+
+            CreateMap<Invitation, InvitationDto>().ReverseMap();
+            // TODO add invitation details
 
             CreateMap<Notification, NotificationDto>().ReverseMap();
             CreateMap<Notification, NotificationDetailDto>().ReverseMap();

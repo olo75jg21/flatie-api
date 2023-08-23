@@ -1,14 +1,10 @@
-using Flatie.Shared.Enums;
-
-namespace Flatie.Dto.Dto
+namespace Flatie.Dto.Fvo
 {
-    public class InvitationDto
+    public class CreateInvitationsFvo
     {
-        public int Id { get; set; }
         public int SenderUserId { get; set; }
         public int RecipientUserId { get; set; }
         public int HomeSpaceId { get; set; }
-        public InvitationStatus Status { get; set; } = InvitationStatus.Pending;
         public DateTime ExpiresAt { get; set; }
     }
 }

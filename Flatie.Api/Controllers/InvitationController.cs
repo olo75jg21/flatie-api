@@ -1,6 +1,7 @@
 using Flatie.Api.Controllers.Interfaces;
 using Flatie.Bll.Services.Interfaces;
 using Flatie.Dto.Dto;
+using Flatie.Dto.Fvo;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Flatie.Api.Controllers
@@ -27,6 +28,21 @@ namespace Flatie.Api.Controllers
             catch (Exception ex)
             {
                 return BadRequest($"An error occurred: {ex.Message}");
+            }
+        }
+
+        [HttpPost("Send")]
+        public async Task<ActionResult<bool>> SendInvitation([FromBody] CreateInvitationsFvo createInvitationsFvo)
+        {
+            try
+            {
+                var result = await _invitationService.SendInvitation(createInvitationsFvo);
+
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Something went wrong: {ex}");
             }
         }
     }
