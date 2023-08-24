@@ -44,5 +44,10 @@ namespace Flatie.Bll.Services
                 return false;
             }
         }
+
+        public async Task AcceptInvitation(int invitationId)
+        {
+
+        }
     }
 }
