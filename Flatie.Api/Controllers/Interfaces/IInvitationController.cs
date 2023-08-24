@@ -8,5 +8,6 @@ namespace Flatie.Api.Controllers.Interfaces
     {
         Task<ActionResult<IEnumerable<InvitationDto>>> GetUserInvitations(int userId);
         Task<ActionResult<bool>> SendInvitation(CreateInvitationsFvo createInvitationsFvo);
+        Task<ActionResult> AcceptInvitation(int invitationId);
     }
 }

@@ -1,6 +1,5 @@
 using Flatie.Dto.Dto;
 using Flatie.Dto.Fvo;
-using Microsoft.AspNetCore.Mvc;
 
 namespace Flatie.Bll.Services.Interfaces
 {
@@ -8,5 +7,6 @@ namespace Flatie.Bll.Services.Interfaces
     {
         Task<IEnumerable<InvitationDto>> GetUserInvitations(int userId);
         Task<bool> SendInvitation(CreateInvitationsFvo createInvitationsFvo);
+        Task AcceptInvitation(int invitationId);
     }
 }

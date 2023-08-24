@@ -45,5 +45,20 @@ namespace Flatie.Api.Controllers
                 return BadRequest($"Something went wrong: {ex}");
             }
         }
+
+        [HttpPost("Accept/{invitationId}")]
+        public async Task<ActionResult> AcceptInvitation(int invitationId)
+        {
+            try
+            {
+                await _invitationService.AcceptInvitation(invitationId);
+
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest($"Something went wrong {ex}");
+            }
+        }
     }
 }
