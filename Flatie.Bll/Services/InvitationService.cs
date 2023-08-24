@@ -45,7 +45,7 @@ namespace Flatie.Bll.Services
             }
         }
 
-        public async Task AcceptInvitation(int invitationId)
+        public async Task AcceptInvitation()
         {
 
         }
