@@ -7,6 +7,6 @@ namespace Flatie.Bll.Services.Interfaces
     {
         Task<IEnumerable<InvitationDto>> GetUserInvitations(int userId);
         Task<bool> SendInvitation(CreateInvitationsFvo createInvitationsFvo);
-        Task AcceptInvitation(int invitationId);
+        Task AcceptInvitation(AcceptInvitationFvo acceptInvitationFvo);
     }
 }

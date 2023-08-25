@@ -19,6 +19,7 @@ builder.Services.AddScoped<IUserAppRoleRepository, UserAppRoleRepository>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<IInvitationRepository, InvitationRepository>();
+builder.Services.AddScoped<IHomeSpaceMemberRepository, HomeSpaceMemberRepository>();
 
 builder.Services.AddTransient<IHomeSpaceService, HomeSpaceService>();
 builder.Services.AddTransient<IUserAppRoleService, UserAppRoleService>();

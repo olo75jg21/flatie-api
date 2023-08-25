@@ -21,5 +21,4 @@ namespace Flatie.Db.Entities
         [ForeignKey("HomeSpaceId")]
         public HomeSpace HomeSpace { get; set; } = null!;
     }
-
 }

@@ -37,6 +37,12 @@ namespace Flatie.Db
                 .HasForeignKey(inv => inv.RecipientUserId)
                 .OnDelete(DeleteBehavior.Restrict);
 
+            modelBuilder.Entity<HomeSpaceMember>(entity =>
+            {
+                entity.Property(e => e.HomeSpaceMemberRoleId)
+                    .HasDefaultValue(1);
+            });
+
             AppDbContextSeeder seeder = new AppDbContextSeeder();
             seeder.SeedData(modelBuilder);
         }

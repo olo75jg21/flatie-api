@@ -46,12 +46,12 @@ namespace Flatie.Api.Controllers
             }
         }
 
-        [HttpPost("Accept/{invitationId}")]
-        public async Task<ActionResult> AcceptInvitation(int invitationId)
+        [HttpPost("Accept")]
+        public async Task<ActionResult> AcceptInvitation([FromBody] AcceptInvitationFvo acceptInvitationFvo)
         {
             try
             {
-                await _invitationService.AcceptInvitation(invitationId);
+                await _invitationService.AcceptInvitation(acceptInvitationFvo);
 
                 return Ok();
             }
